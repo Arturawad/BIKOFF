@@ -73,7 +73,6 @@ body {
     color: #7f8c8d;
 }
 
-/* Стили для списка товаров */
 .basket-items {
     display: grid;
     gap: 20px;
