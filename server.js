@@ -77,6 +77,14 @@ app.get('/contacts', (req, res) => {
     }
 })
 
+app.get('/basket', (req, res) => {
+    try {
+        res.render('basket')
+    } catch(err) {
+        console.log(`An error occurred while processing the Middleware: ${err}`);
+    }
+})
+
 app.get('/getDataProducts', async (req, res) => {
     try {
         const categoryFind = req.query.categoryFind || null

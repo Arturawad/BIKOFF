@@ -57,18 +57,19 @@ function getDataProductsPopular() {
 }
 
 function fillDataProducts(productsData, productsDataContainer) {
-    const productsContainer = productsDataContainer 
+    const productsContainer = productsDataContainer;
+    
+    productsContainer.innerHTML = '';
 
     productsData.dataProducts.forEach((product) => {
-        const productCardWrapper = createProdcutsPopularCard(product)
-        productsContainer.appendChild(productCardWrapper)
-
-        getCardOptionsSize(product, productCardWrapper)
-    })
+        const productCardWrapper = createProdcutsPopularCard(product);
+        productsContainer.appendChild(productCardWrapper);
+        getCardOptionsSize(product, productCardWrapper);
+    });
     
-    saveProductBasket()
-    selectCardOptionsSize(productsData)
-    renderingProductsCard()
+    selectCardOptionsSize(productsData);
+    renderingProductsCard();
+    saveProductBasket(); 
 }
 
 function createProdcutsPopularCard(product) {
@@ -168,88 +169,378 @@ function fillCardOptionSize(product, productCardOptionsList) {
     productCardOptionsList.querySelector('#productCardOptionsList').children[0].classList.remove('main__section__popular-dishes__content-products-card-select-wrapper-list-item-hover')
 }
 
+// Функция для сохранения товаров в корзину
 function saveProductBasket() {
-    const buttonProductSaveArray = Array.from(document.querySelectorAll('[data-product-save]'))
+    const buttonProductSaveArray = Array.from(document.querySelectorAll('[data-product-save]'));
     
-    buttonProductSaveArray.forEach((btn) => btn.addEventListener('click', () => {
-        try {
-            const productCard = btn.parentNode.parentNode
-            let vereficationAdd = true
-            let quantityProductsCounter = 0
+    buttonProductSaveArray.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            try {
+                const productCard = btn.closest('.main__section__popular-dishes__content-products-card');
+                if (!productCard) {
+                    throw new Error('Не удалось найти карточку товара');
+                }
 
-            const productInformation = {
-                productTitle: productCard.querySelector('.main__section__popular-dishes__content-products-card-title').innerHTML,
-                productDesc: productCard.querySelector('.main__section__popular-dishes__content-products-card-desc').innerHTML,
-                productPrice: productCard.querySelector('#product-price').innerHTML,
-                productCounter: parseInt(productCard.querySelector('#product-counter').value),
-                productGramming: productCard.querySelector('#product-gramming').innerHTML,
-                productDiscount: productCard.querySelector('#product-discount')
+                const productCounter = parseInt(productCard.querySelector('#product-counter').value);
+                
+                if (isNaN(productCounter) || productCounter <= 0 || productCounter > 10) {
+                    throw new Error('Недопустимое количество товара');
+                }
+
+                const productInformation = {
+                    id: productCard.dataset.productId || Date.now().toString(),
+                    title: productCard.querySelector('.main__section__popular-dishes__content-products-card-title').textContent,
+                    desc: productCard.querySelector('.main__section__popular-dishes__content-products-card-desc').textContent,
+                    price: productCard.querySelector('#product-price').textContent,
+                    counter: productCounter,
+                    gramming: productCard.querySelector('#product-gramming').textContent,
+                    discount: productCard.querySelector('#product-discount')?.textContent || '',
+                    image: productCard.querySelector('.main__section__popular-dishes__content-products-card-img')?.src || '/images/default-product.jpg'
+                };
+
+                let savedProducts = JSON.parse(localStorage.getItem('productSavedInformation')) || [];
+                const existingIndex = savedProducts.findIndex(p => p.id === productInformation.id);
+                
+                // Проверка общего количества
+                const totalCount = savedProducts.reduce((sum, p) => sum + p.counter, 0);
+                if (totalCount + productInformation.counter > 99) {
+                    showToast(`Превышено максимальное количество товаров (${totalCount + productInformation.counter}/99)`, 'error');
+                    return;
+                }
+
+                if (existingIndex !== -1) {
+                    // Обновляем существующий товар
+                    savedProducts[existingIndex].counter += productInformation.counter;
+                    showToast(`Товар обновлен (${savedProducts[existingIndex].counter} шт.)`, 'success');
+                } else {
+                    // Добавляем новый товар
+                    savedProducts.push(productInformation);
+                    showToast('Товар добавлен в корзину', 'success');
+                }
+
+                localStorage.setItem('productSavedInformation', JSON.stringify(savedProducts));
+                updateQuantityBasket();
+                
+            } catch (err) {
+                console.error('Ошибка при добавлении товара:', err);
+                showToast(err.message || 'Ошибка при добавлении товара', 'error');
             }
-            productInformation.productDiscount === null ? productInformation.productDiscount = '' : productInformation.productDiscount = productCard.querySelector('#product-discount').innerHTML
-            if (productInformation.productCounter <= 0 || productInformation.productCounter > 10) {throw new Error()}
-
-            if (JSON.parse(localStorage.getItem('productSavedInformation'))) {
-                JSON.parse(localStorage.getItem('productSavedInformation')).forEach((product) => {
-                    quantityProductsCounter += product.productCounter
-
-                    if (quantityProductsCounter + productInformation.productCounter > 99) {
-                        const sectionInformationPanelCardText = `Ошибка добавления в корзину: неверное количество "${quantityProductsCounter + productInformation.productCounter}"`
-                        const sectionInformationPanelCardColor = 'red'
-                        showContentInInformationPanel(sectionInformationPanelCardText, sectionInformationPanelCardColor)
-                        vereficationAdd = false
-                        return
-                    }
-
-                    if (product.productTitle === productInformation.productTitle) {
-                        vereficationAdd = false
-
-                        const productsInformationLocalStorageNew = JSON.parse(localStorage.getItem('productSavedInformation'))
-                        productsInformationLocalStorageNew.forEach((product) => {
-                            if (product.productTitle === productInformation.productTitle) {
-                                product.productCounter = product.productCounter + productInformation.productCounter
-                                const sectionInformationPanelCardText = `Количество товара в корзине успешно изменено: ${product.productCounter}`
-                                const sectionInformationPanelCardColor = 'green'
-                                showContentInInformationPanel(sectionInformationPanelCardText, sectionInformationPanelCardColor)
-                            }
-                        })
-
-                        localStorage.setItem('productSavedInformation', JSON.stringify(productsInformationLocalStorageNew))
-                        updateQuantityBasket()
-                    }
-                })
-            }
-
-            if (vereficationAdd) {
-                const savedProductPromise = new Promise((resolve, reject) => {
-                    const productSavedInformation = JSON.parse(localStorage.getItem('productSavedInformation')) || []
-                    productSavedInformation.push(productInformation)
-                    localStorage.setItem('productSavedInformation', JSON.stringify(productSavedInformation))
-    
-                    localStorage.getItem('productSavedInformation') ? resolve() : reject()
-                })
-    
-                savedProductPromise
-                .then(() => {
-                    const sectionInformationPanelCardText = `Товар успешно добавлен в корзину: ${productInformation.productCounter}`
-                    const sectionInformationPanelCardColor = 'green'
-                    updateQuantityBasket()
-                    showContentInInformationPanel(sectionInformationPanelCardText, sectionInformationPanelCardColor)
-                })
-                .catch(err => console.log(err))
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    }))
+        });
+    });
 }
+
+// Функция для отображения корзины
+function renderBasketPage() {
+    const mainElement = document.querySelector('.basket-main');
+    if (!mainElement) return;
+
+    const savedProducts = JSON.parse(localStorage.getItem('productSavedInformation')) || [];
+    
+    if (savedProducts.length === 0) {
+        mainElement.innerHTML = `
+            <section class="basket-section">
+                <div class="basket-empty">
+                    <div class="basket-empty-icon">🛒</div>
+                    <h3 class="basket-empty-title">Ваша корзина пуста</h3>
+                    <p class="basket-empty-text">Добавьте товары из каталога</p>
+                    <button class="basket-empty-button" onclick="window.location.href='/menu'">Перейти в каталог</button>
+                </div>
+            </section>
+        `;
+        return;
+    }
+
+    // Подсчет общей суммы
+    const totalPrice = savedProducts.reduce((sum, product) => {
+        const price = parseFloat(product.price.replace(/[^\d.]/g, '')) * product.counter;
+        return sum + price;
+    }, 0);
+
+    // Генерация HTML для товаров
+    const productsHTML = savedProducts.map(product => {
+        const price = parseFloat(product.price.replace(/[^\d.]/g, '')) * product.counter;
+        const originalPrice = product.discount ? 
+            parseFloat(product.discount.replace(/[^\d.]/g, '')) * product.counter : 0;
+        
+        return `
+            <div class="basket-item" data-product-id="${product.id}">
+                <img src="${product.image}" alt="${product.title}" class="basket-item-img">
+                <div class="basket-item-info">
+                    <h3 class="basket-item-title">${product.title}</h3>
+                    <p class="basket-item-desc">${product.desc}</p>
+                    <div class="basket-item-meta">
+                        <span>${product.gramming}</span>
+                    </div>
+                </div>
+                <div class="basket-item-actions">
+                    <div class="quantity-control">
+                        <button class="quantity-btn minus" data-product-id="${product.id}">−</button>
+                        <span class="quantity-value">${product.counter}</span>
+                        <button class="quantity-btn plus" data-product-id="${product.id}">+</button>
+                    </div>
+                    <div class="basket-item-price">
+                        ${product.discount ? `
+                            <span class="basket-item-discount">${originalPrice.toFixed(2)} ₽</span>
+                        ` : ''}
+                        ${price.toFixed(2)} ₽
+                    </div>
+                    <button class="remove-item" data-product-id="${product.id}">
+                        <svg viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+                        Удалить
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    mainElement.innerHTML = `
+        <section class="basket-section">
+            <div class="basket-header">
+                <h2>Корзина</h2>
+                <span class="basket-total-items">${savedProducts.reduce((sum, p) => sum + p.counter, 0)} товаров</span>
+            </div>
+            <div class="basket-items">
+                ${productsHTML}
+            </div>
+            <div class="basket-total">
+                <div class="basket-total-sum">
+                    Итого: <span>${totalPrice.toFixed(2)} ₽</span>
+                </div>
+                <button class="checkout-button">Оформить заказ</button>
+            </div>
+        </section>
+    `;
+
+    // Добавляем обработчики
+    addBasketItemEventListeners();
+}
+
+// Функция для добавления обработчиков событий
+function addBasketItemEventListeners() {
+    // Удаление товара
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = e.currentTarget.dataset.productId;
+            removeProductFromBasket(productId);
+        });
+    });
+
+    // Увеличение количества
+    document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = e.currentTarget.dataset.productId;
+            updateProductQuantity(productId, 1);
+        });
+    });
+
+    // Уменьшение количества
+    document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = e.currentTarget.dataset.productId;
+            updateProductQuantity(productId, -1);
+        });
+    });
+
+    // Оформление заказа
+    const checkoutBtn = document.querySelector('.checkout-button');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', proceedToCheckout);
+    }
+}
+
+// Функция обновления количества товара
+function updateProductQuantity(productId, change) {
+    let savedProducts = JSON.parse(localStorage.getItem('productSavedInformation')) || [];
+    const productIndex = savedProducts.findIndex(p => p.id === productId);
+    
+    if (productIndex === -1) return;
+
+    const newQuantity = savedProducts[productIndex].counter + change;
+    
+    // Проверка на минимальное и максимальное количество
+    if (newQuantity <= 0) {
+        removeProductFromBasket(productId);
+        return;
+    }
+    
+    if (newQuantity > 10) {
+        showToast('Максимальное количество одного товара - 10 шт.', 'error');
+        return;
+    }
+
+    // Проверка общего количества товаров
+    const totalCount = savedProducts.reduce((sum, p) => sum + (p.id === productId ? newQuantity : p.counter), 0);
+    if (totalCount > 99) {
+        showToast(`Превышено максимальное количество товаров (${totalCount}/99)`, 'error');
+        return;
+    }
+
+    savedProducts[productIndex].counter = newQuantity;
+    localStorage.setItem('productSavedInformation', JSON.stringify(savedProducts));
+    renderBasketPage();
+    updateQuantityBasket();
+    showToast(`Количество изменено: ${newQuantity} шт.`, 'success');
+}
+
+// Функция удаления товара
+function removeProductFromBasket(productId) {
+    let savedProducts = JSON.parse(localStorage.getItem('productSavedInformation')) || [];
+    savedProducts = savedProducts.filter(p => p.id !== productId);
+    localStorage.setItem('productSavedInformation', JSON.stringify(savedProducts));
+    renderBasketPage();
+    updateQuantityBasket();
+    showToast('Товар удален из корзины', 'success');
+}
+
+// Функция оформления заказа
+function proceedToCheckout() {
+    const savedProducts = JSON.parse(localStorage.getItem('productSavedInformation')) || [];
+    if (savedProducts.length === 0) {
+        showToast('Корзина пуста', 'error');
+        return;
+    }
+    
+    // Здесь можно добавить переход на страницу оформления заказа
+    document.querySelector('#writeToUsBtnOpen').click()
+    showToast('Переход к оформлению заказа', 'success');
+}
+
+// Функция обновления счетчика в шапке
+function updateBasketCounter() {
+    const savedProducts = JSON.parse(localStorage.getItem('productSavedInformation')) || [];
+    const totalCount = savedProducts.reduce((sum, p) => sum + p.counter, 0);
+    
+    // Безопасная проверка элементов
+    const basketCounter = document.querySelector('.basket-counter');
+    if (basketCounter) {
+        basketCounter.textContent = totalCount;
+        basketCounter.style.display = totalCount > 0 ? 'flex' : 'none';
+    }
+    
+    const mobileBasketCounter = document.querySelector('.mobile-basket-counter');
+    if (mobileBasketCounter) {
+        mobileBasketCounter.textContent = totalCount;
+        mobileBasketCounter.style.display = totalCount > 0 ? 'flex' : 'none';
+    }
+}
+
+// Вспомогательная функция для показа уведомлений
+function showToast(message, type = 'info') {
+    if (!document.body) {
+        console.log('Toast message:', message);
+        return;
+    }
+    
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.includes('basket')) {
+        renderBasketPage();
+    } else {
+        saveProductBasket();
+    }
+    updateQuantityBasket();
+});
+
+// function saveProductBasket() {
+//     const buttonProductSaveArray = Array.from(document.querySelectorAll('[data-product-save]'))
+    
+//     buttonProductSaveArray.forEach((btn) => btn.addEventListener('click', () => {
+//         try {
+//             const productCard = btn.parentNode.parentNode
+//             let vereficationAdd = true
+//             let quantityProductsCounter = 0
+
+//             const productInformation = {
+//                 productTitle: productCard.querySelector('.main__section__popular-dishes__content-products-card-title').innerHTML,
+//                 productDesc: productCard.querySelector('.main__section__popular-dishes__content-products-card-desc').innerHTML,
+//                 productPrice: productCard.querySelector('#product-price').innerHTML,
+//                 productCounter: parseInt(productCard.querySelector('#product-counter').value),
+//                 productGramming: productCard.querySelector('#product-gramming').innerHTML,
+//                 productDiscount: productCard.querySelector('#product-discount')
+//             }
+//             productInformation.productDiscount === null ? productInformation.productDiscount = '' : productInformation.productDiscount = productCard.querySelector('#product-discount').innerHTML
+//             if (productInformation.productCounter <= 0 || productInformation.productCounter > 10) {throw new Error()}
+
+//             if (JSON.parse(localStorage.getItem('productSavedInformation'))) {
+//                 JSON.parse(localStorage.getItem('productSavedInformation')).forEach((product) => {
+//                     quantityProductsCounter += product.productCounter
+
+//                     if (quantityProductsCounter + productInformation.productCounter > 99) {
+//                         const sectionInformationPanelCardText = `Ошибка добавления в корзину: неверное количество "${quantityProductsCounter + productInformation.productCounter}"`
+//                         const sectionInformationPanelCardColor = 'red'
+//                         showContentInInformationPanel(sectionInformationPanelCardText, sectionInformationPanelCardColor)
+//                         vereficationAdd = false
+//                         return
+//                     }
+
+//                     if (product.productTitle === productInformation.productTitle) {
+//                         vereficationAdd = false
+
+//                         const productsInformationLocalStorageNew = JSON.parse(localStorage.getItem('productSavedInformation'))
+//                         productsInformationLocalStorageNew.forEach((product) => {
+//                             if (product.productTitle === productInformation.productTitle) {
+//                                 product.productCounter = product.productCounter + productInformation.productCounter
+//                                 const sectionInformationPanelCardText = `Количество товара в корзине успешно изменено: ${product.productCounter}`
+//                                 const sectionInformationPanelCardColor = 'green'
+//                                 showContentInInformationPanel(sectionInformationPanelCardText, sectionInformationPanelCardColor)
+//                             }
+//                         })
+
+//                         localStorage.setItem('productSavedInformation', JSON.stringify(productsInformationLocalStorageNew))
+//                         updateQuantityBasket()
+//                     }
+//                 })
+//             }
+
+//             if (vereficationAdd) {
+//                 const savedProductPromise = new Promise((resolve, reject) => {
+//                     const productSavedInformation = JSON.parse(localStorage.getItem('productSavedInformation')) || []
+//                     productSavedInformation.push(productInformation)
+//                     localStorage.setItem('productSavedInformation', JSON.stringify(productSavedInformation))
+    
+//                     localStorage.getItem('productSavedInformation') ? resolve() : reject()
+//                 })
+    
+//                 savedProductPromise
+//                 .then(() => {
+//                     const sectionInformationPanelCardText = `Товар успешно добавлен в корзину: ${productInformation.productCounter}`
+//                     const sectionInformationPanelCardColor = 'green'
+//                     updateQuantityBasket()
+//                     showContentInInformationPanel(sectionInformationPanelCardText, sectionInformationPanelCardColor)
+//                 })
+//                 .catch(err => console.log(err))
+//             }
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     }))
+// }
 
 function updateQuantityBasket() {
     const basketQuantity = document.querySelector('#basket-quantity')
     let basketQuantityValue = 0
 
     if (localStorage.getItem('productSavedInformation')) {
+        
         JSON.parse(localStorage.getItem('productSavedInformation')).forEach((product) => {
-            basketQuantityValue += product.productCounter
+            basketQuantityValue += product.counter
         })
     }
 
