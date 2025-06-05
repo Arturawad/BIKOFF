@@ -1,0 +1,19 @@
+{
+  "name": "bykoff",
+  "version": "1.0.0",
+  "description": "https://dostavka-lending.demoultron.ru - the original site of the copyright holder",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon"
+  },
+  "author": "Arthur Kirillov",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongodb": "^6.7.0",
+    "nodemon": "^3.1.3"
+  }
+}

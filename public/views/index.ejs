@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../blocks/head', {title: "БЫКОФФ - Вкусно. Сочно. Необыкновенно"}) %>
+</head>
+<body style="background: url(/img/left-bg.jpg) no-repeat top 650px left -60px, url(/img/right-bg.jpg) top 650px right -50px no-repeat;">
+    <%- include('../blocks/header') %>
+
+    <main class="main">
+        <div class="main__section__slider">
+            <div class="main__section__slider-content container">
+                <div class="main__section__slider-content-block" data-sliderBlock="0">
+                    <h1 class="main__section__slider-content-title">БЫКОФФ - Вкусно. Сочно. Необыкновенно</h1>
+                    <p class="main__section__slider-content-desc">Закажи и убедись сам</p>
+                    <a href="/menu" class="ready-button" style="margin-top: 10px;" draggable="false">Подробнее</a>
+                </div>
+                <div class="main__section__slider-content-block" data-sliderBlock="1" style="display: none;">
+                    <h1 class="main__section__slider-content-title">Лидеры гастрономического рынка</h1>
+                    <p class="main__section__slider-content-desc">Закажите лучшие блюда от именитых шеф-поваров</p>
+                    <a href="/menu" class="ready-button" style="margin-top: 10px;" draggable="false">Подробнее</a>
+                </div>
+
+                <button class="main__section__slider-content-button-swiper main__section__slider-content-button-swiper-left" data-swiper="swiper-left">&#xe5e0</button>
+                <button class="main__section__slider-content-button-swiper main__section__slider-content-button-swiper-right" data-swiper="swiper-right">&#xe5e1</button>
+
+                <div class="main__section__slider-content-button-swiper-pagination">
+                    <button type="button" class="main__section__slider-content-button-swiper-pagination-thumb main__section__slider-content-button-swiper-pagination-thumb--active" data-swiper="swiper-left" data-pagination="0"></button>
+                    <button type="button" class="main__section__slider-content-button-swiper-pagination-thumb" data-swiper="swiper-right" data-pagination="1"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="main__section__popular-dishes">
+            <div class="main__section__popular-dishes__content container">
+                <h1 class="main__section__popular-dishes__content-title">Популярные блюда</h1>
+
+                <div class="main__section__popular-dishes__content-products main__section__popular-dishes__content-products-padding" id="productsPopularContainer"></div>
+                
+                <a href="/menu" class="ready-button" style="width: 100%; margin-top: 40px;" draggable="false">Всё меню</a>
+            </div>
+        </div>
+
+        <div class="main__section__advantages">
+            <div class="main__section__advantages__content container">
+                <h1 class="main__section__advantages__content-title">Почему к нам возвращаются еще и еще раз ?!</h1>
+                
+                <div class="main__section__advantages__content-blocks">
+                    <div class="main__section__advantages__content-blocks-card">
+                        <img src="/img/free-icon-chicken-1543352_0x128_410.png" style="--size: 128px; width: var(--size); height: var(--size);" alt="Всегда свежие продукты высокого качества" draggable="false">
+                        <h1 class="main__section__advantages__content-blocks-card-title">Всегда свежие продукты <br> высокого качества</h1>
+                    </div>
+
+                    <div class="main__section__advantages__content-blocks-card">
+                        <img src="/img/free-icon-chef-1963016_0x128_410.png" style="--size: 128px; width: var(--size); height: var(--size);" alt="Лучшие повара с многолетним опытом" draggable="false">
+                        <h1 class="main__section__advantages__content-blocks-card-title">Лучшие повара <br> с многолетним опытом</h1>
+                    </div>
+
+                    <div class="main__section__advantages__content-blocks-card">
+                        <img src="/img/free-icon-food-delivery-3140851_0x128_410.png" style="--size: 128px; width: var(--size); height: var(--size);" alt="Доставка от 30 минут" draggable="false">
+                        <h1 class="main__section__advantages__content-blocks-card-title">Доставка <br> от 30 минут</h1>
+                    </div>
+
+                    <div class="main__section__advantages__content-blocks-card">
+                        <img src="/img/free-icon-coffee-cup-1415983_0x128_410.png" style="--size: 128px; width: var(--size); height: var(--size);" alt="Все блюда мы привезём в горячем виде" draggable="false">
+                        <h1 class="main__section__advantages__content-blocks-card-title">Все блюда мы привезём <br> в горячем виде</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main__section__black-block">
+            <div class="main__section__black-block__content container">
+                <h1 class="main__section__black-block__content-title">Вкусно есть в уютной обстановке и под хорошую музыку</h1>
+                <p class="main__section__black-block__content-desc">Настоящий релакс для гурманов от поваров нашей бургерной. <br> Авторские соусы, экзотические специи и нестареющая классика!</p>
+            </div>
+        </div>
+
+        <div class="main__section__poster container">
+            <img src="/img/HOJE-É-DIADE-MEAT-BEBE.jpg" style="width: 50%; height: 551.15px" alt="HOJE É DIA DE MEAT, BEBE!" draggable="false">
+
+            <div class="main__section__poster-text">
+                <h1 class="main__section__poster__text-text-title">Безупречный вкус — залог процветания нашего заведения!</h1>
+                
+                <div class="main__section__poster__text-block">
+                    <p class="main__section__poster__text-block-desc">В нашем меню более 30 видов бургеров и пицц, супы, салаты, шаурма, прохладительные напитки, а также различные сорта кофе и чая. Все блюда можно заказать на дом или в офис, воспользовавшись услугой бесплатной доставки.</p>
+                    <p class="main__section__poster__text-block-desc">БЫКОФФ - это не просто еда, это впечатления. Мы готовим с любовью, используя только свежие ингредиенты, и с удовольствием делимся с вами нашим вкусом. У нас вы найдете широкий выбор блюд на любой вкус: от классических бургеров до необычных салатов и десертов. Мы ценим ваше время и стараемся доставлять заказы как можно быстрее. Мы используем быстрые и надежные службы доставки. Мы гарантируем безупречное качество и непревзойденный вкус. Закажите у нас и убедитесь в этом сами!</p>
+                    <p class="main__section__poster__text-block-desc">Мы уверены, что наш фастфуд доступен каждому. Наш сервис предлагает конкурентные цены и регулярно проводит акции и скидки, всегда готовы помочь вам с выбором блюда и ответить на все ваши вопросы. Наши операторы всегда вежливы и отзывчивы.</p>
+                </div>
+
+                <a href="/about" class="ready-button" style="width: 100%; margin-top: 20px;" draggable="false">Узнать больше о нас</a>
+            </div>
+        </div>
+
+        <div class="main__section__yandex-map-widget">
+            <div class="main__section__yandex-map-widget-block">
+                <div class="main__section__yandex-map-widget-block-content">
+                    <img class="main__section__yandex-map-widget-block-content-img" src="/img/icon-phone.png" alt="phone" draggable="false">           
+                    
+                    <ul class="main__section__yandex-map-widget-block-contacts-block-content-list">
+                        <li><a href="tel:79876543210" class="main__section__yandex-map-widget-block-contacts-block-list-item">+7 (987) 654 32-10</a></li>
+                        <li><a href="tel:79675454615" class="main__section__yandex-map-widget-block-contacts-block-list-item">+7 (967) 545 46-15</a></li>
+                    </ul>
+                </div>
+
+                <div class="main__section__yandex-map-widget-block-content main__section__yandex-map-widget-block-content-borders">
+                    <img style="width: 30px; height: 43px; margin-right: 10px;" src="/img/icon-place.png" alt="geolocation" draggable="false">
+
+                    <ul class="main__section__yandex-map-widget-block-contacts-block-content-list">
+                        <li class="main__section__yandex-map-widget-block-contacts-block-list-item">г. Пенза</li>
+                        <li class="main__section__yandex-map-widget-block-contacts-block-list-item">ул. Ленина, д. 16</li>
+                        <li class="main__section__yandex-map-widget-block-contacts-block-list-item">ул. Калинина, д. 27А</li>
+                        <li class="main__section__yandex-map-widget-block-contacts-block-list-item">ул. Суворова, д. 28</li>
+                    </ul>
+                </div>
+
+                <div class="main__section__yandex-map-widget-block-content">
+                    <img class="main__section__yandex-map-widget-block-content-img" src="/img/icon-clock.png" alt="time" draggable="false">
+
+                    <ul class="main__section__yandex-map-widget-block-contacts-block-content-list">
+                        <p class="main__section__yandex-map-widget-block-contacts-block-list-item">с 10:00 - 22:30 Без выходных</p>
+                    </ul>
+                </div>
+            </div>
+
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Afc4e85470d2aa1f2b1ed353e1c0318781ca545b7e963dbe60f78f789a28491ac&amp;width=100%25&amp;height=500&amp;lang=ru_RU&amp"></script>
+        </div>
+    </main>
+
+    <%- include('../blocks/footer') %>
+
+    <div class="special-section-information-panel" data-information-panel></div>
+</body>
+</html>

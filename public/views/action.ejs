@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../blocks/head', {title: 'БЫКОФФ - Акции'})%>
+</head>
+<body>
+    <%- include('../blocks/header') %>
+
+    <main class="main">
+        <div class="main__section__action container main__section-padding">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h1 class="main__section-title">Акции</h1>
+                <a href="/action/all" class="main__section-link-all" draggable="false">Все</a>
+            </div>
+
+            <div class="main__section__action-wrapper-content">
+                <div class="main__section__action-wrapper-content-card">
+                    <a href="/action/all" class="main__section__action-wrapper-content-card-link" draggable="false">
+                        <img src="/img/discounts-20_760x480_e14.jpg" class="main__section__action-wrapper-content-card-img" draggable="false"></img>
+
+                        <div class="main__section__action-wrapper-content-card-text">
+                            <h1 class="main__section__action-wrapper-content-card-title">Счастливые часы - Скидка 20%</h1>
+                            <p class="main__section__action-wrapper-content-card-information-action">В зале</p>
+                            <p class="main__section__action-wrapper-content-card-desc"> С понедельника по четверг!  с 10:00 до 15:00  Скидка распространяется на основное меню, кроме завтраков и напитков.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="main__section__action-wrapper-content-card">
+                    <a href="/action/all" class="main__section__action-wrapper-content-card-link" draggable="false">
+                        <img src="/img/1-lt-pet-coca-cola_760x480_e14.jpg" class="main__section__action-wrapper-content-card-img" draggable="false"></img>
+                        
+                        <div class="main__section__action-wrapper-content-card-text">
+                            <h1 class="main__section__action-wrapper-content-card-title">Подарки при заказе на доставку</h1>
+                            <p class="main__section__action-wrapper-content-card-information-action">На доставку</p>
+                            <p class="main__section__action-wrapper-content-card-desc">При заказе на доставку от 1000,00 руб = 1 подарок на выбор. При заказе на доставку от 2000,00 руб = 2 подарка на выбор. При заказе на доставку от 3000,00 руб = 3 подарка…</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="main__section__action-wrapper-content-card">
+                    <a href="/action/all" class="main__section__action-wrapper-content-card-link" draggable="false">
+                        <img src="/img/10-1_760x480_e14.jpg" class="main__section__action-wrapper-content-card-img" draggable="false"></img>
+
+                        <div class="main__section__action-wrapper-content-card-text">
+                            <h1 class="main__section__action-wrapper-content-card-title">10% скидка в День рождения</h1>
+                            <p class="main__section__action-wrapper-content-card-information-action">В зале</p>
+                            <p class="main__section__action-wrapper-content-card-desc">Скидка предоставляется на все меню, включая напитки. Действует от суммы счета 2000 руб, в течение 7 дней после дня рождения и при предъявлении паспорта или свидетельство о…</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="main__section__action-wrapper-text">
+                <p>Наши специальные предложения, акции, различные скидки и подарки не суммируются и действуют в строго отведенное время.</p>
+                <p>Акции и специальные предложения не распространяются на банкеты и дни рождения, а так же в выходные и праздничные дни.</p>
+                <p>Действия акций и специальных предложений может быть приостановлено по усмотрению администрации пиццерии.</p>
+                <p>Скидки и акции не суммируются.</p>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../blocks/footer') %>
+
+    <div class="special-section-information-panel" data-information-panel></div>
+</body>
+</html>

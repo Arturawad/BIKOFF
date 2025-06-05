@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../blocks/head', {title: 'БЫКОФФ - Контакты'}) %>
+</head>
+<body>
+    <%- include('../blocks/header') %>
+
+    <main class="main">
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Afc4e85470d2aa1f2b1ed353e1c0318781ca545b7e963dbe60f78f789a28491ac&amp;width=100%25&amp;height=500&amp;lang=ru_RU&amp"></script>
+
+        <div class="main__section__contacts container">
+            <div style="display: flex; justify-content: space-between; padding-top: 60px; padding-bottom: 80px;">
+                <form action="/contacts" class="special-sections-write-to-us-content-form" id="writeToUsForm" style="width: 50%">
+                    <h1 class="main__section-title" style="margin-bottom: 30px;">Обратная связь</h1>
+                    <div style="display: flex; justify-content: space-between;">
+                        <input type="text" class="special-sections-write-to-us-content-form-input" placeholder="Имя *" style="width: 49%;">
+                        <input type="text" class="special-sections-write-to-us-content-form-input" placeholder="Email *" style="width: 49%;">
+                    </div>
+                    <textarea id="writeToUsFormInput" class="special-sections-write-to-us-content-form-input special-sections-write-to-us-content-form-input-textarea" placeholder="Ваше сообщение *"></textarea>
+    
+                    <div class="special-sections-write-to-us-content-check-block">
+                        <button type="button" class="special-sections-write-to-us-content-check-form-checkbox"></button>
+                        <p class="special-sections-write-to-us-content-check-form-text">Согласен на обработку персональных данных *</p>
+                    </div>
+        
+                    <p class="special-sections-write-to-us-content-commitment-text"><span style="color: #D83638;">*</span> - поля, обязательные для заполнения</p>
+        
+                    <button type="submit" class="ready-button" style="margin-top: 20px; width: 100%;">Отправить</button>
+                </form>
+
+                <div style="width: 38.5%;">
+                    <h1 class="main__section-title" style="margin-bottom: 30px">Контакты</h1>
+                    <h2>Адрес</h2>
+                    <ul>
+                        <li>г. Пенза</li>
+                        <li>ул. Ленина, д. 16</li>
+                        <li>ул. Калинина, д. 27А</li>
+                        <li>ул. Суворова, д. 28</li>
+                    </ul>
+                    <h2>Время работы</h2>
+                    <li>с 10:00 - 22:30 Без выходных</li>
+                    <h2>Телефоны</h2>
+                    <ul>
+                        <li style="transition: color 0.2s; width: max-content;" class="main__section__contacts-number"><a href="tel: 7876543210" style="color: initial;">+7 (987) 654 32-10</a></li>
+                        <li style="transition: color 0.2s; width: max-content;" class="main__section__contacts-number"><a href="tel: 79675454615" style="color: initial;">+7 (967) 545 46-15</a></li>
+                    </ul>
+                    <h2>Email</h2>
+                    <li>bykoff@gmail.com</li>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../blocks/footer') %>
+
+    <div class="special-section-information-panel" data-information-panel></div>
+</body>
+</html>

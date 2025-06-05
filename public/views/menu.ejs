@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../blocks/head', {title: 'БЫКОФФ - Меню'}) %> 
+</head>
+<body>
+    <%- include('../blocks/header') %>
+
+    <main class="main">
+        <div class="main__section__menu container">
+            <div id="data-choice-product-category-container" style="margin-bottom: 40px;">
+                <ul class="main__section__menu-choice-category-list">
+                    <li><button class="main__section__menu-choice-category-list-item--active" type="button" data-choice-product-category="Пицца">Пицца</button></li>
+                    <li><button class="main__section__menu-choice-category-list-item" type="button" data-choice-product-category="Бургеры">Бургеры</button></li>
+                    <li><button class="main__section__menu-choice-category-list-item" type="button" data-choice-product-category="Суши / роллы">Суши / роллы</button></li>
+                    <li><button class="main__section__menu-choice-category-list-item" type="button" data-choice-product-category="Холодные закуски">Холодные закуски</button></li>
+                    <li><button class="main__section__menu-choice-category-list-item" type="button" data-choice-product-category="Салаты">Салаты</button></li>
+                    <li><button class="main__section__menu-choice-category-list-item" type="button" data-choice-product-category="Вторые блюда">Вторые блюда</button></li>
+                    <li><button class="main__section__menu-choice-category-list-item" type="button" data-choice-product-category="Десерты">Десерты</button></li>
+                    <li><button class="main__section__menu-choice-category-list-item" type="button" data-choice-product-category="Напитки">Напитки</button></li>
+    
+                    <div class="main__section__menu-choice-category-list-item-underline"></div>
+                </ul>
+            </div>
+
+            <div class="main__section__popular-dishes__content-products" id="products-menu-container"></div>
+        </div>
+
+        <div class="main__section__advantages">
+            <div class="main__section__advantages__content container">
+                <h1 class="main__section__advantages__content-title">Почему к нам возвращаются еще и еще раз ?!</h1>
+                
+                <div class="main__section__advantages__content-blocks">
+                    <div class="main__section__advantages__content-blocks-card">
+                        <img src="/img/free-icon-chicken-1543352_0x128_410.png" style="--size: 128px; width: var(--size); height: var(--size);" alt="Всегда свежие продукты высокого качества" draggable="false">
+                        <h1 class="main__section__advantages__content-blocks-card-title">Всегда свежие продукты <br> высокого качества</h1>
+                    </div>
+
+                    <div class="main__section__advantages__content-blocks-card">
+                        <img src="/img/free-icon-chef-1963016_0x128_410.png" style="--size: 128px; width: var(--size); height: var(--size);" alt="Лучшие повара с многолетним опытом" draggable="false">
+                        <h1 class="main__section__advantages__content-blocks-card-title">Лучшие повара <br> с многолетним опытом</h1>
+                    </div>
+
+                    <div class="main__section__advantages__content-blocks-card">
+                        <img src="/img/free-icon-food-delivery-3140851_0x128_410.png" style="--size: 128px; width: var(--size); height: var(--size);" alt="Доставка от 30 минут" draggable="false">
+                        <h1 class="main__section__advantages__content-blocks-card-title">Доставка <br> от 30 минут</h1>
+                    </div>
+
+                    <div class="main__section__advantages__content-blocks-card">
+                        <img src="/img/free-icon-coffee-cup-1415983_0x128_410.png" style="--size: 128px; width: var(--size); height: var(--size);" alt="Все блюда мы привезём в горячем виде" draggable="false">
+                        <h1 class="main__section__advantages__content-blocks-card-title">Все блюда мы привезём <br> в горячем виде</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../blocks/footer') %>
+
+    <div class="special-section-information-panel" data-information-panel></div>
+</body>
+</html>

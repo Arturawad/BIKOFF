@@ -1,0 +1,316 @@
+@media screen and (max-width: 1840px) {
+    /* home */
+    body {
+        background: none !important;
+    }
+}
+@media screen and (max-width: 767px) {
+    /* home */
+    .container {
+        width: 667px;
+    }
+    .header__logo {
+        height: 100px;
+    }
+    .header__wrapper__phones-list-item a {
+        font-size: 19px;
+    }
+    .header__wrapper__phones {
+        margin-right: 60px;
+    }
+    .main__section__slider-content-title {
+        font-size: 37px;
+    }
+    .main__section__slider-content-desc {
+        font-size: 18px;
+    }
+    .main__section__slider-content-block a {
+        margin-bottom: 57.5px;
+    }
+    .main__section__popular-dishes__content-products {
+        width: calc(687px - 60px);
+    }
+    .main__section__advantages__content-title {
+        font-size: 28px;
+    }
+    .main__section__advantages__content-blocks {
+        padding-top: 50px;
+        flex-wrap: wrap;
+        width: 620px;
+        justify-content: inherit;
+        gap: 20px 20px;
+    }
+    .main__section__advantages__content-blocks-card {
+        width: 48%;
+    }
+    .main__section__advantages_1_content-blocks-card img {
+        --size: 75px !important;
+    }
+    .main__section__advantages__content-blocks-card-title {
+        padding-top: 12px;
+        font-size: 18px;
+    }
+    .main__section__yandex-map-widget {
+        margin-top: 75px;
+    }
+    .footer__content__contacts-geolocation-text {
+        font-size: 11px;
+    }
+    .footer__content__contacts-text-orders {
+        font-size: 11px;
+    }
+    .footer__content__contacts button {
+        size: 165px !important;
+        font-size: 10px !important;
+    }
+    .footer__content__contacts button > span > img {
+        width: 24px;
+        height: 24px;
+    }
+    .footer__content__info-text {
+        font-size: 11px;
+    }
+    /* menu */
+    .main__section__menu-choice-category-list {
+        flex-wrap: wrap;
+    }
+    .main__section__menu-choice-category-list-item--active {
+        text-decoration: underline 1px solid #F58427;
+        text-underline-offset: 4px;
+    }
+    .main__section__menu-choice-category-list-item-underline {
+        display: none;
+    }
+}
+@media screen and (max-width: 666px) {
+    /* home */
+    .container {
+        width: 557px;
+    }
+    .header__logo {
+        padding: initial;
+        display: initial;
+        background: initial;
+        box-shadow: initial;
+        padding-top: 4px;
+    }
+    .header__wrapper__phones {
+        display: none;
+    }
+    .main__section__popular-dishes__content-products {
+        width: calc(557px - 60px);
+    }
+    .main__section__advantages__content-title {
+        font-size: 23px;
+    }
+    .main__section__advantages__content-blocks {
+        width: 500px;
+    }
+    .main__section__advantages__content-blocks {
+        padding-top: 40px;
+        padding-bottom: 70px;
+    }
+    .main__section__black-block__content-title {
+        font-size: 34px;
+    }
+    .main__section__popular-dishes__content-products-card-counter-and-buy {
+        gap: 100px;
+    }
+    .main__section__slider-content-block a {
+        margin-bottom: 44.5px;
+    }
+    .main__section__slider-content-button-swiper-pagination {
+        top: 84.5%;
+    }
+    .main__section__slider {
+        height: 455px;
+    }
+    .main__section__slider::after {
+        height: 415px;
+    }
+    .main__section__slider-content-title {
+        font-size: 30px;
+    }
+    .main__section__slider-content-desc {
+        font-size: 17px;
+    }
+    .main__section__black-block {
+        padding: 65px 0;
+    }
+    .footer__content__contacts {
+        justify-content: initial;
+        flex-direction: column;
+        gap: 17.5px;
+    }
+    .footer__content__info {
+        padding-top: 20px;
+    }
+}
+@media screen and (max-width: 556px) {
+    /* home */
+    .container {
+        width: 425px;
+    }
+    .header__logo {
+        padding-top: 6px;
+    }
+    .main__section__popular-dishes__content-products {
+        width: calc(425px - 60px);
+        overflow-x: hidden;
+        flex-wrap: wrap;
+    }
+    .main__section__advantages__content-title {
+        font-size: 26px;
+        text-align: center;
+    }
+    .main__section__popular-dishes__content-title {
+        font-size: 42px;
+    }
+    .main__section__slider-content-title {
+        font-size: 32px;
+    }
+    .main__section__slider-content-desc {
+        font-size: 16px;
+    }
+    .main__section__black-block {
+        padding: 50px 0;
+    } 
+    .main__section__black-block__content-title {
+        font-size: 38px;
+    }
+    .main__section__black-block__content-desc {
+        font-size: 20px;
+    }
+    .main__section__advantages__content-blocks-card {
+        width: 47%;
+    }
+    .main__section__advantages__content-blocks {
+        width: calc(425px - 60px);
+    }
+    .main__section__popular-dishes__content a {
+        margin-top: 25px !important;
+    }
+    .main__section__advantages__content-blocks-card img {
+        --size: 65px !important;
+    }
+    .main__section__popular-dishes__content-products-card-counter-and-buy {
+        gap: 80px;
+    }
+    .main__section__poster__text-text-title {
+        font-size: 30px;
+    }
+    /* menu */
+    .main__section__menu-choice-category-list-item-submenu {
+        font-size: 17px;
+    }
+}
+@media screen and (max-width: 424px) {
+    .container {
+        width: 375px;
+    }
+    .header__logo {
+        padding-top: 10px;
+    }
+    .main__section__popular-dishes__content-products {
+        width: calc(375px - 60px);
+    }
+    .main__section__popular-dishes__content-products-card-counter-and-buy {
+        gap: 55px;
+    }
+    .main__section__slider-content-title {
+        font-size: 30px;
+    }
+    .main__section__advantages__content-title {
+        font-size: 30px;
+    }
+    .main__section__popular-dishes__content-products-card {
+        width: calc(375px - 60px);
+    }
+    .main__section__advantages__content-blocks {
+        width: 315px;
+    }
+    .main__section__popular-dishes__content-title {
+        font-size: 38px;
+    }
+    .main__section__advantages__content-blocks-card {
+        width: 100%;
+    }
+    .main__section__black-block__content-title {
+        font-size: 34px;
+    }
+    .main__section__black-block__content-desc {
+        font-size: 17px;
+    }
+    .main__section__poster__text-text-title {
+        font-size: 26px;
+    }
+    .main__section__poster__text-block-desc {
+        font-size: 15px;
+    }
+    /* menu */
+    .main__section__menu-choice-category-list-item-submenu {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 374px) {
+    .container {
+        width: 320px;
+    }
+    .header__logo {
+        padding-top: 11px;
+    }
+    .header__burger-basket__wrapper {
+        gap: 12.5px;
+    }
+    .main__section__popular-dishes__content-title {
+        font-size: 35px;
+    }
+    .main__section__advantages__content-title {
+        font-size: 29px;
+    }
+    .main__section__advantages__content-blocks {
+        width: calc(325px - 60px);
+    }
+    .main__section__popular-dishes__content-products-card {
+        width: calc(320px - 60px);
+    }
+    .main__section__popular-dishes__content-products-card-price {
+        font-size: 18px;
+    }
+    .main__section__popular-dishes__content-products-card-price-discount {
+        font-size: 15px;
+    }
+    .main__section__popular-dishes__content-products-card-grams {
+        font-size: 13px;
+    }
+    .main__section__popular-dishes__content-products-card-counter-wrapper-button {
+        font-size: 20px;
+    }
+    .main__section__popular-dishes__content-products-card-counter-wrapper-quantity {
+        width: 35px;
+    }
+    .main__section__popular-dishes__content-products {
+        width: calc(320px - 60px);
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+    .main__section__popular-dishes__content-products-card-counter-and-buy {
+        gap: 24px;
+    }
+    .main__section__black-block__content-title {
+        font-size: 28px;
+    }
+    .main__section__black-block__content-desc {
+        font-size: 15px;
+    }
+    .main__section__poster__text-text-title {
+        font-size: 25px;
+    }
+    /* menu */
+    .main__section__menu-select-submenu ul {
+        gap: 15px;
+    }
+    .main__section__menu-choice-category-list-item-submenu {
+        font-size: 13.5px;
+    }
+}

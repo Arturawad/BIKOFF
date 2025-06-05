@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../blocks/head', {title: 'БЫКОФФ - Отзывы'}) %>
+</head>
+<body>
+    <%- include('../blocks/header') %>
+
+    <main class="main">
+        <div class="main__section__reviews container main__section-padding">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h1 class="main__section-title">Отзывы</h1>
+                <a href="/reviews/all" class="main__section-link-all" style="padding-right: 12.5px;" draggable="false">Все</a>
+            </div>
+
+            <div class="main__section__reviews-content">
+                <div class="main__section__reviews-content-card">
+                    <div class="main__section__reviews-content-card-quote">&#xe244</div>
+                    <p class="main__section__reviews-content-card-text">Пицца просто огонь! Но хотелось бы, чтобы в меню были указаны ингредиенты в каждом блюде, чтобы аллергики могли спокойно выбирать.</p>
+                    <h1 class="main__section__reviews-content-card-name">Василий</h1>
+                    <p class="main__section__reviews-content-card-date">24 Июня, 2024</p>
+                </div>
+                
+                <div class="main__section__reviews-content-card">
+                    <div class="main__section__reviews-content-card-quote">&#xe244</div>
+                    <p class="main__section__reviews-content-card-text">Вкусно, как всегда! Но хотелось бы больше выбора напитков. Может быть, введете в меню новые варианты?</p>
+                    <h1 class="main__section__reviews-content-card-name">Эльвина</h1>
+                    <p class="main__section__reviews-content-card-date">17 Июня, 2024</p>
+                </div>  
+
+                <div class="main__section__reviews-content-card">
+                    <div class="main__section__reviews-content-card-quote">&#xe244</div>
+                    <p class="main__section__reviews-content-card-text">Приятная атмосфера, вкусная еда и напитки. Но музыка была вчера немного громкая, хотелось бы более спокойного фона.</p>
+                    <h1 class="main__section__reviews-content-card-name">Марат</h1>
+                    <p class="main__section__reviews-content-card-date">5 Июня, 2024</p>
+                </div>  
+            </div>
+
+            <form action="/reviews" class="special-sections-write-to-us-content-form" id="reviewsForm" style="width: 515px; padding-top: 60px; padding-bottom: 60px;">
+                <h1 class="main__section-title" style="text-transform: uppercase; font-weight: 400; font-size: 34px; margin-bottom: inherit;">Оставить отзыв</h1>
+
+                <div style="display: flex; justify-content: space-between;">
+                    <input id="writeToUsFormInput" type="text" class="special-sections-write-to-us-content-form-input" placeholder="Ваше имя *" style="padding-top: 25px; width: 49%;">
+                    <input id="writeToUsFormInput" type="text" class="special-sections-write-to-us-content-form-input" placeholder="Email *" style=" width: 49%;">
+                </div>
+                <textarea class="special-sections-write-to-us-content-form-input special-sections-write-to-us-content-form-input-textarea" placeholder="Ваш отзыв *"></textarea>
+    
+                <p class="special-sections-write-to-us-content-commitment-text" style="padding-top: 30px;"><span style="color: #D83638;">*</span> - поля, обязательные для заполнения</p>
+    
+                <button type="submit" class="ready-button" style="margin-top: 30px;">Отправить</button>
+            </form>
+        </div>
+    </main>
+
+    <%- include('../blocks/footer') %>
+
+    <div class="special-section-information-panel" data-information-panel></div>
+</body>
+</html>
