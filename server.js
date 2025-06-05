@@ -12,7 +12,7 @@ app.set('views', './public/views')
 
 async function connectToDb() {
     try {
-        const connect = await MongoClient.connect('mongodb://localhost:27017/')
+        const connect = await MongoClient.connect('mongodb+srv://artur:2007@cluster0.ezeapwz.mongodb.net/bykoff-db?retryWrites=true&w=majority&appName=Cluster0')
         const db = connect.db('bykoff-db')
         return db
     } catch(err) {
